@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pl"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default"
+      xmlns:th="http://www.w3.org/1999/xhtml"
+>
+    <head>
+        <title>Dodaj nowy artykuł</title>
+        <link th:href="@{../style.css}" rel="stylesheet" type="text/css"/>
+    </head>
+
+    <body>
+
+        <main layout:fragment="content">
+            <div class="row">
+                <form th:action="@{/article/addArticle}" th:object="${articleForm}" method="post" class="col m8 s8 offset-m2">
+                    <div class="row">
+                        <div class="input-field">
+                            <input th:field="${articleForm.title}" id="articleTitle" type="text" required="required" />
+                            <label for="articleTitle">Tytuł:</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field">
+                            <input th:field="${articleForm.content}" id="articleContent" type="text" required="required"/>
+                            <label for="articleContent">Zawartość:</label>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="input-field">
+                          <input th:field="${articleForm.author}" id="articleAuthor" type="text" required="required"/>
+                          <label for="articleAuthor">Autor:</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <button class="btn waves-effect waves-light green" type="submit" name="save">Wyślij<i class="mdi-content-send right"></i></button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </body>
+</html>

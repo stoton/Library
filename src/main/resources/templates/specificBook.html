@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default"
+>
+    <head>
+        <link th:href="@{../../style.css}" rel="stylesheet" type="text/css"/>
+        <meta charset="UTF-8" />
+        <title>Konkretna książka</title>
+
+        <style>
+            .margin {
+                margin-top: 20px;
+                margin-bottom: 50px;
+            }
+
+            .btn-large {
+                width: 200px;
+                height: 80px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <main layout:fragment="content">
+            <div class="container">
+                <div class="card-panel green center">
+                    <h5 th:text="|Tytuł: &nbsp;${book.title}|" class="white-text"></h5>
+                    <h5 th:text="|Autor: &nbsp;${book.author}|" class="white-text"></h5>
+                </div>
+
+                <h5 class="indigo-text center margin">Dostępne operacje:</h5>
+
+                <div class="center">
+                    <div class="row">
+                        <div class="col s12 m6">
+                            <button th:text="Wypożycz" class="btn-large waves-effect waves-light green center white-text" id="rent"></button>
+                        </div>
+
+                        <div class="col s12 m6">
+                            <button th:text="Usuń" class="btn-large waves-effect waves-light green center white-text" id="delete"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script th:inline="javascript">
+                $("#delete").click(function() {
+                    if(confirm('Jesteś pewny?')) {
+                        var url = [[${book.id}]];
+                        $.ajax({
+                            url: '/books/delete/' + url,
+                            type: 'DELETE',
+                            success: function(result) {
+                                $(location).attr('href', '/')
+                            }
+                        });
+                    }
+                });
+            </script>
+        </main>
+    </body>
+</html>

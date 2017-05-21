@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default"
+>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Jak zostać nowym czytelnikiem?</title>
+    </head>
+
+    <body>
+        <main layout:fragment="content">
+            <div class="center">
+                <h3 class="indigo-text">Więc jednak zdecydowałeś się na zostanie z nami na dłużej?</h3>
+                <p class="indigo-text">Wbrew pozorom to nie takie proste. Musisz spełnić kilka warunków..</p>
+                <p class="indigo-text">..tak naprawdę to tylko jeden, otóż..</p>
+                <p class="indigo-text">czytając książkę musisz się..</p>
+                <h1 class="indigo-text">Świetnie bawić!</h1>
+            </div>
+
+            <div class="center">
+                <img class="responsive-img" src="http://www.blog.indiareads.com/wp-content/uploads/2015/04/book-quotes-1.jpg"/>
+            </div>
+            <br/>
+        </main>
+
+        <script>
+            $(document).ready(function(){
+                $(".button-collapse").sideNav();
+            });
+        </script>
+    </body>
+</html>

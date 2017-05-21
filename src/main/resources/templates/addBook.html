@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default"
+>
+
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Dodawanie nowej książki</title>
+        <link th:href="@{../style.css}" rel="stylesheet" type="text/css"/>
+    </head>
+
+    <body>
+        <main layout:fragment="content">
+            <div class="row">
+                <form th:action="@{/books/addBook}" th:object="${bookForm}" method="post" class="col m8 s8 offset-m2">
+                    <div class="row">
+                        <div class="input-field">
+                            <input th:field="${bookForm.title}" id="bookTitle" type="text" required="required"/>
+                            <label for="bookTitle">Tytuł:</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field">
+                            <input th:field="${bookForm.author}" id="bookAuthor" type="text" required="required"/>
+                            <label for="bookAuthor">Autor:</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <button class="btn waves-effect waves-light green" type="submit" name="save">Wyślij<i class="mdi-content-send right"></i></button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </body>
+</html>

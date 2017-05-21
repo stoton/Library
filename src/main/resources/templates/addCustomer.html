@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="layout/default"
+>
+    <head>
+        <title>Dodawanie nowego czytelnika</title>
+    </head>
+
+    <body>
+        <main layout:fragment="content">
+            <div class="row">
+                <h2 class="green-text center">Dodawanie nowego czytelnika</h2>
+
+                <form th:action="@{/customer/addCustomer}" th:object="${customerForm}" method="post" class="col m8 s8 offset-m2">
+                    <div class="row">
+                        <div class="input-field">
+                            <input th:field="${customerForm.firstName}" id="firstName" type="text" required="required"/>
+                            <label for="firstName">Imię</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field">
+                            <input th:field="${customerForm.lastName}" id="lastName" type="text" required="required"/>
+                            <label for="lastName">Nazwisko</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div  class="input-field">
+                            <input th:field="${customerForm.pesel}" id="pesel" type="text" required="required"/>
+                            <label for="pesel">Pesel</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div  class="input-field">
+                            <input th:field="${customerForm.address.city}" id="address.city" type="text" required="required"/>
+                            <label for="address.city">Miasto</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field">
+                            <input th:field="${customerForm.address.street}" id="address.street" type="text" required="required"/>
+                            <label for="address.street">Ulica</label>
+                        </div>
+
+                        <div class="input-field">
+                            <input th:field="${customerForm.address.streetNumber}" id="address.streetNumber" type="text" required="required"/>
+                            <label for="address.streetNumber">Nr domu</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field">
+                            <input th:field="${customerForm.address.zipCode}" id="address.zipCode" type="text" required="required"/>
+                            <label for="address.zipCode">Kod pocztowy</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <button class="btn waves-effect waves-light green" type="submit" name="save">Wyślij<i class="mdi-content-send right"></i></button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </body>
+</html>

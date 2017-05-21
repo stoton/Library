@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default"
+>
+    <head>
+        <title>Witaj świecie</title>
+
+        <style>
+            .margin {
+                margin-bottom: 40px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <main layout:fragment="content">
+            <div class="container">
+               <div th:if="${greeting}">
+                   <div class="center margin">
+                       <h1 class="indigo-text center"> Witaj drogi przybyszu!</h1>
+                       <p class="indigo-text center">Biblioteka - to aplikacja służąca do zarządzania księgarnią online. Możliwe jest tutaj zarządzanie książkami oraz członkami bibliotecznej braci.</p>
+                       <p class="indigo-text center">Dzięki niej, nie pogubisz się w stercie papierów - o wszystko zadba strona. Ty tylko musisz udać się w wygodną podróż.</p>
+                   </div>
+
+                   <div class="center">
+                        <img class="responsive-img" src="http://urbanaffairsassociation.org/wp-content/uploads/2013/08/Stacks.jpg" alt="podróż.."/>
+                   </div>
+               </div>
+
+               <div th:if="${list}">
+                   <div th:each="article : ${list}" class="card green">
+                       <div class="card-content white-text">
+                           <span class="card-title" th:text="${article.title}"></span>
+                           <p th:text="${article.content}"></p>
+                       </div>
+
+                       <div class="card-action">
+                           <p class="white-text" th:text="${article.author}"></p>
+                           <p class="white-text" th:text="${article.localDate}"></p>
+                       </div>
+                   </div>
+               </div>
+
+               <div class="row">
+                   <a th:if="${previous}" class="btn waves-effect waves-light green left" th:href="${previous}">Poprzednia</a>
+                   <a th:if="${next}" class="btn waves-effect waves-light green right" th:href="${next}">Następna</a>
+               </div>
+
+            </div>
+        </main>
+
+        <script>
+            $(document).ready(function(){
+                $(".button-collapse").sideNav();
+            });
+        </script>
+    </body>
+</html>

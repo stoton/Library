@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default"
+>
+    <head>
+        <link th:href="@{../style.css}" rel="stylesheet" type="text/css"/>
+        <meta charset="UTF-8"/>
+        <title>Książki</title>
+    </head>
+
+    <body>
+        <main layout:fragment="content">
+            <div class="container">
+                <div class="row">
+                    <div th:each="book : ${list}" class="col s12 m5">
+                        <div class="card-panel green teal">
+                            <a class="white-text" th:href="@{|/books/id/${book.id}|}" th:text="${book.title}"></a>
+                            <p class="white-text" th:text="${book.author}"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

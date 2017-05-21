@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default"
+>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Wszyscy pracownicy</title>
+    <link th:href="@{../style.css}" rel="stylesheet" type="text/css"/>
+    <style>
+
+        .th-dynamic {
+
+        }
+
+        .updateData {
+
+        }
+    </style>
+</head>
+<body>
+
+<main layout:fragment="content">
+    <div class="container">
+        <div th:if="${customerList}">
+            <input type="text" id="szukaj_osoby" placeholder="wpisz imię, nazwisko lub pesel"/>
+            <table class="responsive-table" id="tabela">
+                <thead>
+                    <tr>
+                        <th>Imię</th>
+                        <th>Nazwisko</th>
+                        <th>Pesel</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr th:each="customer : ${customerList}" class="th-dynamic">
+                        <td th:text="${customer.firstName}" class="updateData" th:id="${customer.id}"></td>
+                        <td th:text="${customer.lastName}" class="updateData" th:id="${customer.id}"></td>
+                        <td th:text="${customer.pesel}" class="updateData" th:id="${customer.id}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+        $(".updateData").click(function() {
+            if(confirm('Jesteś pewny?')) {
+                $.ajax({
+                    url: '/books/update/1',
+                    type: 'PUT',
+                    success: function(result) {
+                        $(location).attr('href', '/')
+                    }
+                });
+            }
+        });
+        var $rows = $('#tabela .th-dynamic');
+
+        $('#szukaj_osoby').keyup(function() {
+
+            var val = '^(?=.*\\b' + $.trim($(this).val()).split(/\s+/).join('\\b)(?=.*\\b') + ').*$',
+                reg = RegExp(val, 'i'),
+                text;
+
+            $rows.show().filter(function() {
+                text = $(this).text().replace(/\s+/g, ' ');
+                return !reg.test(text);
+            }).hide();
+        });
+    </script>
+</main>
+
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/defaultWithoutHeaderAndFooter"
+>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>O autorze</title>
+
+        <style>
+            audio {
+                display: none;
+            }
+        </style>
+    </head>
+
+    <body th:style="'background:url(' + @{/background.jpg} + ');
+        background-repeat:no-repeat;
+        background-size:cover;
+        '">
+        <main layout:fragment="content">
+            <div class="center">
+                <h1 class="white-text">Autor postanowił nie ujawniać swoich danych.</h1>
+                <p class="white-text">Zostawił Ci jednak zagadkę, być może ona doprowadzi Cię do celu?</p>
+                <p class="white-text">Odpowiedź na to pytanie.</p>
+                <h5 class="white-text">Gdyby Twój głos mógł dotrzeć na koniec świata nie zanikając, jakie słowa byś wypowiedział? </h5>
+                <audio controls="controls" loop="loop" autoplay="autoplay">
+                    <source th:src="@{yume.mp3}"/>
+                </audio>
+            </div>
+        </main>
+    </body>
+</html>
